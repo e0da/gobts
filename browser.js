@@ -1,8 +1,7 @@
 /* eslint-env browser, jquery */
 
 const config = {
-  // interval: 1000 * 60 * 5, // 5 minutes in milliseconds
-  interval: 1000,
+  interval: 1000 * 60 * 5, // 5 minutes in milliseconds
   defaultPostParams: {
     url: 'http://localhost:3000/',
     type: 'POST',
@@ -29,7 +28,11 @@ function getStats() {
   });
 }
 
-const interval = // eslint-disable-line no-unused-vars
-  setInterval(() => getStats().then(updateRemote), config.interval);
+function update() {
+  getStats().then(updateRemote);
+}
+
+// eslint-disable-next-line no-unused-vars
+const interval = setInterval(update, config.interval);
 
 // clearInterval(interval);
